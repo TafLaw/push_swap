@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:43:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/10 11:12:17 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/07/11 16:07:27 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,26 @@ int		length(struct node *r)
 	return (len);
 }
 
-int		duplicate(int *arr)
+int		duplicate(struct node *arr)
 {
-	int i;
-	int j;
+	struct node *temp;
 	int dup;
 
-	i = 0;
 	dup = 0;
-	j=0;
-	while (i < 7)
+	//printf("%d\n", arr -> data);
+	while (arr)
 	{
-		//j = i + 1;
-		while (j + 1 < 7)
+		temp = arr -> link;
+		while (temp)
 		{
-			if (arr[i] == arr[i+1])
+			//printf("%d          %d\n", arr -> data, temp -> data);
+			if (arr -> data == temp -> data)
+				dup++;
+			if (dup == 1)
 				return (1);
-			j++;
+			temp = temp -> link;
 		}
-		i++;
+		arr = arr -> link;
 	}
 	return (0);
 }
@@ -54,18 +55,18 @@ int		duplicate(int *arr)
 void	checker(struct node *r)
 {
 	int			i;
+	int			len;
 	struct node	*temp;
 	
 	temp = r;
-
 	i = 0;
-	//j = 0;
 	if (!temp)
 		return;
-	while (i < length(temp))
+	len = length(temp);
+	while (i < len)
 	{
-		if (ft_isdigit(temp -> data) || duplicate((int *)temp) || 
-				temp -> data > MAX)
+		if (ft_isdigit(temp -> data) || duplicate(temp) || 
+				(temp -> data > MAX && temp -> data < MIN))
 		{
 			printf("Error\n");
 			return;
@@ -128,7 +129,9 @@ void display()
 int		main(void)
 {
 	int choice;
+	int len;
 
+	len = length(root);
 	while (1)
 	{
 		printf("\nchoice : ");
@@ -141,7 +144,7 @@ int		main(void)
 		else if (choice == 3)
 			printf("%d\n", length(root));
 		else if (choice == 4)
-			printf("%d Duplicates\n", duplicate((int *)root));
+			printf("%d Duplicates\n", duplicate(root));
 		else if (choice == 5)
 			checker(root);
 		else
