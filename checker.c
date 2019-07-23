@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:43:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/23 13:14:37 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/07/23 14:57:58 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ int		main(int argc, char *argv[])
 		i++;
 		j--;
 	}
-	stack_b = push_b(top, stack_b);
-	stack_b = push_b(top, stack_b);
 	stack_b = push_b(top, stack_b);
 	//testing two stacks
 	/*i = 1;

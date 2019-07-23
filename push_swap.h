@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/23 13:01:08 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/07/23 18:17:14 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ struct node
 	struct	node *link;
 };
 //struct node *top;
-struct node     *push_a(struct node *stack_b, struct node *top);
-struct node		*push_b(struct node *top, struct node *stack_b);
+int     ft_lstlen(struct node *r);
+void    ab_rrotate(struct node **a, struct node **b);
+void          rot_ab(struct node **stack);
+void           rrot_ab(struct node **stack);
+int			isEmpty(struct node *top);
+void		delete_n(struct node *top);
+struct node     *push_a(struct node **stack_b, struct node *top);
+struct node		*push_b(struct node **top, struct node *stack_b);
 void		pop(struct node **top);
 int				*reverse_stack(int ar, struct node *stack);
 struct node		*push(int dat, struct node *top);
@@ -37,6 +43,6 @@ void		ab_swap(struct node	*stack_a, struct node *stack_b);
 int			do_op(char *str, struct node *stack, struct node *stack_a,
 		struct node *stack_b);
 void		rotate(struct node *stack);
-void		ab_rotate(struct node *a, struct node *b);
+void		ab_rotate(struct node **a, struct node **b);
 
 #endif
