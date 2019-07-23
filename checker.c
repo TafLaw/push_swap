@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:43:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/22 18:13:36 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/07/23 13:14:37 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 //This function is for display testing
-/*void	trav(struct node *top)
+void	trav(struct node *top)
 {
 	struct node *temp;
 	if (top == NULL)
@@ -27,9 +27,9 @@
 			printf("%d -> ", temp -> data);
 			temp = temp -> link;
 		}
-		printf("NULL");
+		printf("NULL\n");
 	}
-}*/
+}
 
 static int duplicate(struct node *stack)
 {
@@ -70,15 +70,25 @@ static int number(char *s)
 		return (1);
 	return (0);
 }
-
-int			checker(char *s, struct node *top)
+//Currently on reserve until further notice
+/*int			checker(char *s, struct node *top)
 {
 	if (s[0] != '-' && (!ft_strcmp(s, MAX) || ft_strlen(s) > ft_strlen(MAX)))
 		return (0);
-	if (s[0] == '-' && (s[10] < '8' || ft_strlen(s) > ft_strlen(MIN)))
+	else if (s[0] == '-' && (s[10] < '8' || ft_strlen(s) > ft_strlen(MIN)))
 		return (0);
-	if (s[9] > '7' || s[8] > '4' || !number(s) || duplicate(top) || !ft_strcmp(s, MAX))
+	else if (s[9] > '7' || s[8] > '4' || !number(s) || duplicate(top) || !ft_strcmp(s, MAX))
 		return (0);
+	return (1);
+}*/
+int			checker(char *s, struct node *top)
+{ 
+	if (!number(s) || duplicate(top) || !ft_strcmp(s, MAX) ||
+			(ft_strlen(s) > ft_strlen(MAX)))
+	{
+		ft_putendl("Error");
+		return (0);
+	}
 	return (1);
 }
 #include <stdio.h>
@@ -88,9 +98,11 @@ int		main(int argc, char *argv[])
 	int	i;
 	int *temp;
 	struct node *top;
+	struct node *stack_b;
 
 	i = 1;
 	j = 0;
+	stack_b = NULL; //initialise the helper stack
 	if (argc == 1)
 		return (0);
 	temp = (int *)malloc(sizeof(int) * argc);
@@ -111,13 +123,32 @@ int		main(int argc, char *argv[])
 	{
 		top = push(temp[j], top);
 		if (!checker(argv[i], top))
-		{
-			ft_putendl("Error");
 			return (0);
-		}
 		i++;
 		j--;
 	}
-	//trav(top);	
+	stack_b = push_b(top, stack_b);
+	stack_b = push_b(top, stack_b);
+	stack_b = push_b(top, stack_b);
+	//testing two stacks
+	/*i = 1;
+	j = 0;
+	while (i <= argc - 1)
+    {
+        stack_b = push(temp[j], stack_b);
+        if (!checker(argv[i], stack_b))
+            return (0);
+        i++;
+        j++;
+    }*///delete this
+	//pop(top);
+	trav(top);
+	trav(stack_b);
+
+	/*printf("\n\n\n");
+	top = push_a(stack_b, top);
+	top = push_a(stack_b, top);
+	trav(top);
+    trav(stack_b);*/
 	return (0);
 }
