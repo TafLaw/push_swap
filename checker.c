@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:43:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/23 14:57:58 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/07/25 11:47:52 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ void	trav(struct node *top)
 	}
 }
 
+static int max(char *str)
+{
+	if (ft_strlen(str) == ft_strlen("2147483647"))
+	{
+		if (ft_strcmp(str, "2147483647") > 0)
+			return (0);
+	}
+	else if (ft_strlen(str) > ft_strlen("2147483647"))
+	{
+		return (0);
+	}
+	return (1);
+}
+
 static int duplicate(struct node *stack)
 {
 	struct node *temp;
@@ -39,7 +53,7 @@ static int duplicate(struct node *stack)
 	{
 		temp = stack -> link;
 		while (temp)
-		 {
+		{
 			if (stack -> data == temp -> data)
 				return (1);
 			temp = temp -> link;
@@ -72,19 +86,19 @@ static int number(char *s)
 }
 //Currently on reserve until further notice
 /*int			checker(char *s, struct node *top)
-{
-	if (s[0] != '-' && (!ft_strcmp(s, MAX) || ft_strlen(s) > ft_strlen(MAX)))
-		return (0);
-	else if (s[0] == '-' && (s[10] < '8' || ft_strlen(s) > ft_strlen(MIN)))
-		return (0);
-	else if (s[9] > '7' || s[8] > '4' || !number(s) || duplicate(top) || !ft_strcmp(s, MAX))
-		return (0);
-	return (1);
-}*/
+  {
+  if (s[0] != '-' && (!ft_strcmp(s, MAX) || ft_strlen(s) > ft_strlen(MAX)))
+  return (0);
+  else if (s[0] == '-' && (s[10] < '8' || ft_strlen(s) > ft_strlen(MIN)))
+  return (0);
+  else if (s[9] > '7' || s[8] > '4' || !number(s) || duplicate(top) || !ft_strcmp(s, MAX))
+  return (0);
+  return (1);
+  }*/
 int			checker(char *s, struct node *top)
 { 
-	if (!number(s) || duplicate(top) || !ft_strcmp(s, MAX) ||
-			(ft_strlen(s) > ft_strlen(MAX)))
+	if (!number(s) || duplicate(top)) //|| !ft_strcmp(s, MAX) ||
+			//(ft_strlen(s) > ft_strlen(MAX)))
 	{
 		ft_putendl("Error");
 		return (0);
@@ -108,7 +122,7 @@ int		main(int argc, char *argv[])
 	temp = (int *)malloc(sizeof(int) * argc);
 	while (i <= argc - 1)
 	{
-		if (!number(argv[i]))
+		if (!number(argv[i]) || !max(argv[i]))
 		{
 			ft_putendl("Error");
 			return (0);
@@ -127,26 +141,10 @@ int		main(int argc, char *argv[])
 		i++;
 		j--;
 	}
-	stack_b = push_b(top, stack_b);
-	//testing two stacks
-	/*i = 1;
-	j = 0;
-	while (i <= argc - 1)
-    {
-        stack_b = push(temp[j], stack_b);
-        if (!checker(argv[i], stack_b))
-            return (0);
-        i++;
-        j++;
-    }*///delete this
-	//pop(top);
 	trav(top);
-	trav(stack_b);
-
-	/*printf("\n\n\n");
-	top = push_a(stack_b, top);
-	top = push_a(stack_b, top);
+	if (argc == 4)
+		sort_3(&top);
+	printf("When sorted\n");
 	trav(top);
-    trav(stack_b);*/
 	return (0);
 }

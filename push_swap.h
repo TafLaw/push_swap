@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/23 18:17:14 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/07/25 11:43:06 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ struct node
 	struct	node *link;
 };
 //struct node *top;
+void	sort_3(struct node **stack);
 int     ft_lstlen(struct node *r);
 void    ab_rrotate(struct node **a, struct node **b);
 void          rot_ab(struct node **stack);
