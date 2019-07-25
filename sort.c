@@ -6,24 +6,39 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:42:25 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/19 10:29:38 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/07/25 12:15:45 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(int a, int b)
+void	sort_3(struct node **stack)
 {
-	int temp;
+	struct node *temp;
 
-	temp = a;
-	a = b;
-	b = temp;
-}
-
-int		sort(struct node *stack, char *s)
-{
-	if (ft_strcmp(s, "sa"))
-		ft_swap(stack -> data, stack -> link -> data);
-	return (1);
+	temp = *stack;
+	if (temp -> data > temp -> link -> data && 
+			temp -> link -> data < temp -> link -> link -> data && 
+			temp -> data < temp -> link -> link -> data)
+		nswap(*stack);
+	else if (temp -> data > temp -> link -> data &&
+		  temp -> link -> data	> temp -> link -> link -> data &&
+		  temp -> link -> link -> data < temp -> link -> data)
+	{
+		nswap(*stack);
+		rrot_ab(stack);
+	}
+	else if (temp -> data > temp -> link -> data &&
+            temp -> data > temp -> link -> link -> data && 
+			temp -> link -> data < temp -> link -> link -> data)
+		rot_ab(stack);
+	else if (temp -> data < temp -> link -> data &&
+            temp -> data < temp -> link -> link -> data &&
+            temp -> link -> data > temp -> link -> link -> data)
+	{
+		nswap(*stack);
+        rot_ab(stack);
+	}
+	else
+		rrot_ab(stack);
 }
