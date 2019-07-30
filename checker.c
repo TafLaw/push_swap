@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:43:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/25 11:47:52 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/07/30 14:17:36 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,10 +141,14 @@ int		main(int argc, char *argv[])
 		i++;
 		j--;
 	}
-	trav(top);
+	//This must be minimised to a single function(the sorting);
 	if (argc == 4)
 		sort_3(&top);
-	printf("When sorted\n");
+	else if (argc == 6)
+		sort_5(&top, &stack_b);
+	//printf("%p", top -> link);
+	//push_smallest(&top, &stack_b);
+	printf("\033[0;33m");
 	trav(top);
 	return (0);
 }

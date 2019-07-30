@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 15:23:05 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/23 18:22:19 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/07/30 14:19:50 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,25 @@ struct node     *push_a(struct node **stack_b, struct node *top)
     top	= temp;
     *stack_b = p ->link;
     return (top);
+}
+//WORK HERE
+void		push_smallest(struct node **stack, struct node **b)
+{
+	int min;
+	int location;
+	struct node *a;
+
+	a = *stack;
+	location = 0;
+    min = a->data;
+    while (a->link)
+    {
+        if (min > a->link->data)
+           min = a->link->data;
+        a = a->link;
+    }
+	location = loc(*stack, min);
+	small_to_top(*stack, location);
+	*b = push_b(stack, *b);
+	printf("pb\n");
 }
