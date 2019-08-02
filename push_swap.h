@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/30 13:57:40 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/02 13:11:45 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ struct node
 	struct	node *link;
 };
 //struct node *top;
+void	sort_2(struct node **stack);
 int		loc(struct node *top, int min);
 void	push_smallest(struct node **stack, struct node **b);
 void        small_to_top(struct node *top, int loc);
@@ -35,8 +36,8 @@ void          rot_ab(struct node **stack);
 void           rrot_ab(struct node **stack);
 int			isEmpty(struct node *top);
 void		delete_n(struct node *top);
-struct node     *push_a(struct node **stack_b, struct node *top);
-struct node		*push_b(struct node **top, struct node *stack_b);
+void	push_a(struct node **stack_b, struct node **top);
+void	push_b(struct node **top, struct node **stack_b);
 void		pop(struct node **top);
 int				*reverse_stack(int ar, struct node *stack);
 struct node		*push(int dat, struct node *top);

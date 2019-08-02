@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:43:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/30 14:17:36 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/02 14:24:45 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,18 @@ int		main(int argc, char *argv[])
 	//This must be minimised to a single function(the sorting);
 	if (argc == 4)
 		sort_3(&top);
+	else if (argc == 2)
+		ft_putendl("only one element");
 	else if (argc == 6)
 		sort_5(&top, &stack_b);
+	else if (argc == 5)
+	{
+		push_smallest(&top, &stack_b);
+		sort_3(&top);
+		push_a(&stack_b, &top);
+	}
+	else
+		sort_2(&top);
 	//printf("%p", top -> link);
 	//push_smallest(&top, &stack_b);
 	printf("\033[0;33m");

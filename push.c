@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 15:23:05 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/30 14:19:50 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/02 13:17:28 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,56 +25,54 @@ struct node    *push(int dat, struct node *top)
 	return (top);
 }
 
-struct node		*push_b(struct node **top, struct node *stack_b)
+void		push_b(struct node **top, struct node **stack_b)
 {
 	struct node *temp;
 	struct node *p;
 	int			dat;
 
 	if (isEmpty(*top))
-        return (stack_b);
+		return ;
 	p = *top;
 	if (p -> link == NULL)
 	{
-		stack_b = push(p -> data, stack_b);
+		*stack_b = push(p -> data, *stack_b);
 		*top = NULL;
-		return (stack_b);
+		return ;
 	}
 	dat = p -> data;
 	temp = (struct node *)malloc(sizeof(struct node));
     if (temp == NULL)
-        return (0);
+        return ;
     temp -> data = dat;
-    temp -> link = stack_b;
-    stack_b = temp;
+    temp -> link = *stack_b;
+    *stack_b = temp;
 	*top = p -> link;
-    return (stack_b);
 }
 
-struct node     *push_a(struct node **stack_b, struct node *top)
+void	push_a(struct node **stack_b, struct node **top)
 {
     struct node *temp;
 	struct node *p;
     int         dat;
 
 	if (isEmpty(*stack_b))
-		return (top);
+		return ;
 	p = *stack_b;
 	if (p -> link == NULL)
 	{
-		top = push(p -> data, top);
+		*top = push(p -> data, *top);
 		*stack_b = NULL;
-        return (top);
+        return ;
 	}
     dat = p -> data;
     temp = (struct node *)malloc(sizeof(struct node));
     if (temp == NULL)
-        return (0);
+        return ;
     temp -> data = dat;
-    temp -> link = top;
-    top	= temp;
+    temp -> link = *top;
+    *top	= temp;
     *stack_b = p ->link;
-    return (top);
 }
 //WORK HERE
 void		push_smallest(struct node **stack, struct node **b)
@@ -94,6 +92,6 @@ void		push_smallest(struct node **stack, struct node **b)
     }
 	location = loc(*stack, min);
 	small_to_top(*stack, location);
-	*b = push_b(stack, *b);
+	push_b(stack, b);
 	printf("pb\n");
 }
