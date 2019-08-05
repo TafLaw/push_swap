@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:43:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/02 14:24:45 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/05 14:42:40 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	trav(struct node *top)
 	}
 }
 
-static int max(char *str)
+int max(char *str)
 {
 	if (ft_strlen(str) == ft_strlen("2147483647"))
 	{
@@ -63,7 +63,7 @@ static int duplicate(struct node *stack)
 	return (0);
 }
 
-static int number(char *s)
+int number(char *s)
 {
 	int 		i;
 	unsigned int 	num;
@@ -105,9 +105,10 @@ int			checker(char *s, struct node *top)
 	}
 	return (1);
 }
-#include <stdio.h>
+/*
 int		main(int argc, char *argv[])
 {
+	char *op;
 	int j;
 	int	i;
 	int *temp;
@@ -155,10 +156,19 @@ int		main(int argc, char *argv[])
 		push_a(&stack_b, &top);
 	}
 	else
+	{
 		sort_2(&top);
+		sort_5(&top, &stack_b);
+	}
 	//printf("%p", top -> link);
 	//push_smallest(&top, &stack_b);
 	printf("\033[0;33m");
 	trav(top);
+	while (get_next_line(0, &op) == 1)
+	{
+		do_op(op, &top, &stack_b);
+		trav(top);
+	}
+	//trav(top);
 	return (0);
-}
+}*/

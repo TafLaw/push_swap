@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/02 13:11:45 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/05 14:51:01 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "./libft/libft.h"
+# include "get_next_line.h"
 struct node
 {
 	int		data;
@@ -46,8 +47,8 @@ int			sort(struct node *stack, char *s);
 void		push_swap(struct node *root);
 void		nswap(struct node *stack);
 void		ab_swap(struct node	*stack_a, struct node *stack_b);
-int			do_op(char *str, struct node *stack, struct node *stack_a,
-		struct node *stack_b);
+void			do_op(char *ins, struct node **stack_a,
+		struct node **stack_b);
 void		rotate(struct node *stack);
 void		ab_rotate(struct node **a, struct node **b);
 
