@@ -6,13 +6,13 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 15:25:52 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/23 18:34:42 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/06 11:43:32 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void          rot_ab(struct node **stack)
+void          rot_ab(struct node **stack, char c)
 {
     struct node *top;
     struct node *end;
@@ -29,9 +29,10 @@ void          rot_ab(struct node **stack)
 	}
     end -> link = top;
     top -> link = NULL;
+	c == 'a' ? ft_putendl("ra") : ft_putendl("rb");
 }
 
-void           rrot_ab(struct node **stack)
+void           rrot_ab(struct node **stack, char c)
 {
     struct node *top;
     struct node *end;
@@ -50,17 +51,18 @@ void           rrot_ab(struct node **stack)
     tmp -> link = NULL;
     end -> link = top;
     *stack = end;
+	c == 'a' ? ft_putendl("ra") : ft_putendl("rb");
 
 }
 
 void	ab_rotate(struct node **a, struct node **b)
 {
-	rot_ab(a);
-	rot_ab(b);
+	rot_ab(a, 'a');
+	rot_ab(b, 'b');
 }
 
 void    ab_rrotate(struct node **a, struct node **b)
 {
-    rrot_ab(a);
-    rrot_ab(b);
+    rrot_ab(a, 'a');
+    rrot_ab(b, 'b');
 }

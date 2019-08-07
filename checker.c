@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:43:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/05 14:42:40 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/07 12:46:31 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int max(char *str)
 	return (1);
 }
 
-static int duplicate(struct node *stack)
+int duplicate(struct node *stack)
 {
 	struct node *temp;
 
@@ -105,10 +105,10 @@ int			checker(char *s, struct node *top)
 	}
 	return (1);
 }
-/*
+
 int		main(int argc, char *argv[])
 {
-	char *op;
+	//char *op;
 	int j;
 	int	i;
 	int *temp;
@@ -147,15 +147,31 @@ int		main(int argc, char *argv[])
 		sort_3(&top);
 	else if (argc == 2)
 		ft_putendl("only one element");
-	else if (argc == 6)
-		sort_5(&top, &stack_b);
+	/*else if (argc == 6)
+		sort_5(&top, &stack_b);*/
 	else if (argc == 5)
 	{
 		push_smallest(&top, &stack_b);
 		sort_3(&top);
 		push_a(&stack_b, &top);
 	}
-	else
+	else if (argc >= 6)
+	{
+		i = 1;
+		while (i++ <= argc - 1)
+		{
+			//printf("\033[0;24mIN HERE\033[0m\n");
+			//trav(top);
+			push_smallest(&top, &stack_b);
+			//trav(top);
+			//printf("\n");
+		}
+		while (i-- > 1)
+			push_a(&stack_b, &top);
+	}
+	printf("\033[0;33m");
+	trav(top);
+	/*else
 	{
 		sort_2(&top);
 		sort_5(&top, &stack_b);
@@ -169,6 +185,7 @@ int		main(int argc, char *argv[])
 		do_op(op, &top, &stack_b);
 		trav(top);
 	}
-	//trav(top);
+	push_smallest(&top, &stack_b);
+	trav(top);*/	
 	return (0);
-}*/
+}

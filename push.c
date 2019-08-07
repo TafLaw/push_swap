@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 15:23:05 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/02 13:17:28 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:16:43 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void		push_b(struct node **top, struct node **stack_b)
     temp -> link = *stack_b;
     *stack_b = temp;
 	*top = p -> link;
+	ft_putendl("pb");
 }
 
 void	push_a(struct node **stack_b, struct node **top)
@@ -73,6 +74,7 @@ void	push_a(struct node **stack_b, struct node **top)
     temp -> link = *top;
     *top	= temp;
     *stack_b = p ->link;
+	ft_putendl("pa");
 }
 //WORK HERE
 void		push_smallest(struct node **stack, struct node **b)
@@ -84,14 +86,18 @@ void		push_smallest(struct node **stack, struct node **b)
 	a = *stack;
 	location = 0;
     min = a->data;
+	//printf("\033[0;32m");
+	//trav(*stack);
+	  //  printf("\033[0m");
     while (a->link)
     {
         if (min > a->link->data)
            min = a->link->data;
         a = a->link;
     }
+	//printf("%d\n\n", min, location);
 	location = loc(*stack, min);
-	small_to_top(*stack, location);
-	push_b(stack, b);
-	printf("pb\n");
+	   //printf("%d			%d\n\n", min, location);
+	small_to_top(stack, b, location, ft_lstlen(*stack));
+	//push_b(stack, b);
 }

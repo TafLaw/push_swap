@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:42:25 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/02 16:19:20 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/06 14:47:50 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		loc(struct node *top, int min)
 		i++;
 		len = len->link;
 	}
+//	printf("_______>>>>>>%d<<<<<<______\n", i);
 	return (i);
 }
 
@@ -33,7 +34,7 @@ void	sort_2(struct node **stack)
 
 	temp = *stack;
 	if (temp->data > temp->link->data)
-		nswap(*stack);
+		nswap(*stack, 'a');
 	return ;
 }
 
@@ -48,35 +49,32 @@ void	sort_3(struct node **stack)//Sorting only 3 numbers & working fine
 			temp->link->data < temp->link->link->data && 
 			temp->data < temp->link->link->data)
 	{
-		nswap(*stack);
+		nswap(*stack, 'a');
 		printf("sa\n");
 	}
 	else if (temp->data > temp->link->data &&
 		  temp->link->data	> temp->link->link->data &&
 		  temp->link->link->data < temp->link->data)
 	{
-		nswap(*stack);
-		rrot_ab(stack);
-		printf("sa\nrra\n");
+		nswap(*stack, 'a');
+		rrot_ab(stack, 'a');
 	}
 	else if (temp->data > temp->link->data &&
             temp->data > temp->link->link->data && 
 			temp->link->data < temp->link->link->data)
 	{
-		rot_ab(stack);
-		printf("ra\n");
+		rot_ab(stack, 'a');
 	}
 	else if (temp->data < temp->link->data &&
             temp->data < temp->link->link->data &&
             temp->link->data > temp->link->link->data)
 	{
-		nswap(*stack);
-        rot_ab(stack);
-		printf("sa\nra\n");
+		nswap(*stack, 'a');
+        rot_ab(stack, 'a');;
 	}
 	else
 	{
-		rrot_ab(stack);
+		rrot_ab(stack, 'a');
 		printf("rr\n");
 	}
 }//This might change in due time
@@ -111,7 +109,7 @@ void  sort_5(struct node **stack, struct node **b)
 	t = *b;
 	if (t->data < t->link->data)
 	{
-		nswap(*b);
+		nswap(*b, 'b');
 		ft_putendl("sb");
 		while (--i >= 0)
 		{
@@ -131,14 +129,14 @@ void  sort_5(struct node **stack, struct node **b)
 	if (a->link->data > a->link->link->data && a->link->data > a->link->link->link->data)
 	{
 		ft_putendl("sa");
-		nswap(*stack);
+		nswap(*stack, 'a');
 		ft_putendl("ra");
-		rot_ab(stack);
+		rot_ab(stack, 'a');
 
 		push_b(stack, b);
          push_b(stack, b);
          push_b(stack, b);
-         rrot_ab(b);
+         rrot_ab(b, 'b');
          push_a(b, stack);
          push_a(b, stack);
          push_a(b, stack);

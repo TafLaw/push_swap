@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/05 14:51:01 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/06 15:18:29 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,22 @@ struct node
 	struct	node *link;
 };
 //struct node *top;
+int max(char *str);
+int number(char *s);
+int duplicate(struct node *stack);
+void    create_temp(int **temp, int len, char **argv);
+//static int duplicate(struct node *stack);
+void    trav(struct node *top);
 void	sort_2(struct node **stack);
 int		loc(struct node *top, int min);
 void	push_smallest(struct node **stack, struct node **b);
-void        small_to_top(struct node *top, int loc);
+void        small_to_top(struct node **top, struct node **b, int loc, int len);
 void	sort_5(struct node **stack, struct node **b);
 void	sort_3(struct node **stack);
 int     ft_lstlen(struct node *r);
 void    ab_rrotate(struct node **a, struct node **b);
-void          rot_ab(struct node **stack);
-void           rrot_ab(struct node **stack);
+void          rot_ab(struct node **stack, char c);
+void           rrot_ab(struct node **stack, char c);
 int			isEmpty(struct node *top);
 void		delete_n(struct node *top);
 void	push_a(struct node **stack_b, struct node **top);
@@ -45,7 +51,7 @@ struct node		*push(int dat, struct node *top);
 int			checker(char *s, struct node *top);
 int			sort(struct node *stack, char *s);
 void		push_swap(struct node *root);
-void		nswap(struct node *stack);
+void		nswap(struct node *stack, char c);
 void		ab_swap(struct node	*stack_a, struct node *stack_b);
 void			do_op(char *ins, struct node **stack_a,
 		struct node **stack_b);

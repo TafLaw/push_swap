@@ -15,9 +15,9 @@
 void	do_op(char *ins, struct node **stack_a, struct node **stack_b)
 {
 	if (!ft_strcmp(ins, "sa"))
-		nswap(*stack_a);
+		nswap(*stack_a, 'a');
 	else if (!ft_strcmp(ins, "sb"))
-		nswap(*stack_b);
+		nswap(*stack_b, 'b');
 	else if (!ft_strcmp(ins, "ss"))
 		ab_swap(*stack_a, *stack_b);	
 	else if (!ft_strcmp(ins, "pa"))
@@ -25,15 +25,15 @@ void	do_op(char *ins, struct node **stack_a, struct node **stack_b)
 	else if (!ft_strcmp(ins, "pb"))
         push_b(stack_a, stack_b);
 	else if (!ft_strcmp(ins, "ra"))
-        rot_ab(stack_a);
+        rot_ab(stack_a, 'a');
 	else if (!ft_strcmp(ins, "rb"))
-        rot_ab(stack_b);
+        rot_ab(stack_b, 'b');
 	else if (!ft_strcmp(ins, "rr"))
         ab_rotate(stack_a, stack_b);
 	else if (!ft_strcmp(ins, "rra"))
-        rrot_ab(stack_a);
+        rrot_ab(stack_a, 'a');
 	else if (!ft_strcmp(ins, "rrb"))
-        rrot_ab(stack_b);
+        rrot_ab(stack_b, 'b');
 	else if (!ft_strcmp(ins, "rrr"))
         ab_rrotate(stack_a, stack_b);
 	//return (1);
