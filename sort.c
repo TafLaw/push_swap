@@ -6,29 +6,13 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 09:42:25 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/06 14:47:50 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/08 10:58:51 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		loc(struct node *top, int min)
-{
-	struct node *len;
-	int i;
-
-	i = 1;
-	len = top;
-	while (len && len->data != min)
-	{
-		i++;
-		len = len->link;
-	}
-//	printf("_______>>>>>>%d<<<<<<______\n", i);
-	return (i);
-}
-
-void	sort_2(struct node **stack)
+static void	sort_2(struct node **stack)
 {
 	struct node *temp;
 
@@ -38,48 +22,51 @@ void	sort_2(struct node **stack)
 	return ;
 }
 
-void	sort_3(struct node **stack)//Sorting only 3 numbers & working fine
+static void	sort_3(struct node **stack)
 {
-	struct node *temp;
+	struct node *t;
 
-	temp = *stack;
-	if (temp->data < temp->link->data && temp->link->data < temp->link->link->data)
+	t = *stack;
+	if (pos(t, 1) < pos(t, 2) && pos(t, 2) < pos(t, 3))
 		return ;
-	if (temp->data > temp->link->data && 
-			temp->link->data < temp->link->link->data && 
-			temp->data < temp->link->link->data)
-	{
+	if (pos(t, 1) > pos(t, 2) && pos(t, 2) < pos(t, 3) && pos(t, 1) < pos(t, 3))
 		nswap(*stack, 'a');
-		printf("sa\n");
-	}
-	else if (temp->data > temp->link->data &&
-		  temp->link->data	> temp->link->link->data &&
-		  temp->link->link->data < temp->link->data)
+	else if (pos(t, 1) > pos(t, 2) && pos(t, 2) > pos(t, 3))
 	{
 		nswap(*stack, 'a');
 		rrot_ab(stack, 'a');
 	}
-	else if (temp->data > temp->link->data &&
-            temp->data > temp->link->link->data && 
-			temp->link->data < temp->link->link->data)
+	else if (pos(t, 1) > pos(t, 2) && pos(t, 1) > pos(t, 3) &&
+	pos(t, 2) < pos(t, 3))
 	{
 		rot_ab(stack, 'a');
 	}
-	else if (temp->data < temp->link->data &&
-            temp->data < temp->link->link->data &&
-            temp->link->data > temp->link->link->data)
+	else if (pos(t, 1) < pos(t, 2) && pos(t, 1) < pos(t, 3) &&
+	pos(t, 2) > pos(t, 3))
 	{
 		nswap(*stack, 'a');
-        rot_ab(stack, 'a');;
+		rot_ab(stack, 'a');
 	}
 	else
-	{
 		rrot_ab(stack, 'a');
-		printf("rr\n");
-	}
-}//This might change in due time
+}
 
-/*void	sort_5(struct node **stack, struct node **b)
+static void	sort_4(struct node **stack, struct node **b)
+{
+	int location;
+	int min;
+
+	min = find_min(*stack);
+	location = loc(*stack, min);
+	if (location == 1 && ft_lstlen(*stack) > 2)
+		push_b(stack, b, 'b');
+	else
+		push_smallest(stack, b);
+	sort_3(stack);
+	push_a(b, stack, 'a');
+}
+
+static void	sort_5(struct node **stack, struct node **b)
 {
 	int i;
 
@@ -88,57 +75,22 @@ void	sort_3(struct node **stack)//Sorting only 3 numbers & working fine
 		push_smallest(stack, b);
 	sort_3(stack);
 	while (1 < i--)
-	{
-		push_a(b, stack);
-		printf("pa\n");
-	}
-}*/
-void  sort_5(struct node **stack, struct node **b)
+		push_a(b, stack, 'a');
+}
+
+void		sorter(struct node **stack, struct node **b)
 {
-	int i;
-	struct node *a = *stack;
-	struct node *t;
+	int len;
 
-    i = 0;
-    while (i++ < 2)
-	{
-		ft_putendl("pb");
-		push_b(stack, b);
-	}
-	sort_3(stack);
-	t = *b;
-	if (t->data < t->link->data)
-	{
-		nswap(*b, 'b');
-		ft_putendl("sb");
-		while (--i >= 0)
-		{
-			push_a(b, stack);
-			ft_putendl("pa");
-		}
-	}
-	else
-	{
-		while (--i >= 0)
-		{
-			push_a(b, stack);
-			ft_putendl("pa");
-		}
-	}
-	a = *stack;
-	if (a->link->data > a->link->link->data && a->link->data > a->link->link->link->data)
-	{
-		ft_putendl("sa");
-		nswap(*stack, 'a');
-		ft_putendl("ra");
-		rot_ab(stack, 'a');
-
-		push_b(stack, b);
-         push_b(stack, b);
-         push_b(stack, b);
-         rrot_ab(b, 'b');
-         push_a(b, stack);
-         push_a(b, stack);
-         push_a(b, stack);
-	}
+	len = ft_lstlen(*stack);
+	if (len == 1)
+		return ;
+	else if (len == 2)
+		sort_2(stack);
+	else if (len == 3)
+		sort_3(stack);
+	else if (len == 4)
+		sort_4(stack, b);
+	else if (len == 5)
+		sort_5(stack, b);
 }

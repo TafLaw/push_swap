@@ -6,26 +6,26 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 15:23:05 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/06 15:16:43 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/13 13:55:06 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-struct node    *push(int dat, struct node *top)
+struct node	*push(int dat, struct node *top)
 {
-    struct node *temp;
+	struct node *temp;
 
-    temp = (struct node *)malloc(sizeof(struct node));
-    if (temp == NULL)
-        return (0);
-    temp -> data = dat;
-    temp -> link = top;
-    top = temp;
+	temp = (struct node *)malloc(sizeof(struct node));
+	if (temp == NULL)
+		return (0);
+	temp->data = dat;
+	temp->link = top;
+	top = temp;
 	return (top);
 }
 
-void		push_b(struct node **top, struct node **stack_b)
+void		push_b(struct node **top, struct node **stack_b, char c)
 {
 	struct node *temp;
 	struct node *p;
@@ -34,70 +34,75 @@ void		push_b(struct node **top, struct node **stack_b)
 	if (isEmpty(*top))
 		return ;
 	p = *top;
-	if (p -> link == NULL)
+	if (p->link == NULL)
 	{
-		*stack_b = push(p -> data, *stack_b);
+		*stack_b = push(p->data, *stack_b);
 		*top = NULL;
 		return ;
 	}
-	dat = p -> data;
+	dat = p->data;
 	temp = (struct node *)malloc(sizeof(struct node));
-    if (temp == NULL)
-        return ;
-    temp -> data = dat;
-    temp -> link = *stack_b;
-    *stack_b = temp;
-	*top = p -> link;
+	if (temp == NULL)
+		return ;
+	temp->data = dat;
+	temp->link = *stack_b;
+	*stack_b = temp;
+	*top = p->link;
+	if (c == 'c')
+		return ;
 	ft_putendl("pb");
 }
 
-void	push_a(struct node **stack_b, struct node **top)
+void		push_a(struct node **stack_b, struct node **top, char c)
 {
-    struct node *temp;
+	struct node *temp;
 	struct node *p;
-    int         dat;
+	int			dat;
 
 	if (isEmpty(*stack_b))
 		return ;
 	p = *stack_b;
-	if (p -> link == NULL)
+	if (p == NULL)
 	{
-		*top = push(p -> data, *top);
+		*top = push(p->data, *top);
 		*stack_b = NULL;
-        return ;
+		return ;
 	}
-    dat = p -> data;
-    temp = (struct node *)malloc(sizeof(struct node));
-    if (temp == NULL)
-        return ;
-    temp -> data = dat;
-    temp -> link = *top;
-    *top	= temp;
-    *stack_b = p ->link;
+	dat = p->data;
+	temp = (struct node *)malloc(sizeof(struct node));
+	if (temp == NULL)
+		return ;
+	temp->data = dat;
+	temp->link = *top;
+	*top = temp;
+	*stack_b = p->link;
+	if (c == 'c')
+		return ;
 	ft_putendl("pa");
 }
-//WORK HERE
+
 void		push_smallest(struct node **stack, struct node **b)
 {
-	int min;
-	int location;
+	int			min;
+	int			location;
 	struct node *a;
 
 	a = *stack;
 	location = 0;
-    min = a->data;
-	//printf("\033[0;32m");
-	//trav(*stack);
-	  //  printf("\033[0m");
-    while (a->link)
-    {
-        if (min > a->link->data)
-           min = a->link->data;
-        a = a->link;
-    }
-	//printf("%d\n\n", min, location);
+	min = find_min(*stack);
 	location = loc(*stack, min);
-	   //printf("%d			%d\n\n", min, location);
 	small_to_top(stack, b, location, ft_lstlen(*stack));
-	//push_b(stack, b);
+}
+
+void		push_largest(struct node **stack, struct node **b)
+{
+	int			max;
+	int			location;
+	struct node *a;
+
+	a = *b;
+	location = 0;
+	max = find_max(*b);
+	location = loc(*b, max);
+	big_to_top(stack, b, location, ft_lstlen(*b));
 }

@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 16:43:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/07 12:46:31 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/08 14:31:23 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,88 +104,4 @@ int			checker(char *s, struct node *top)
 		return (0);
 	}
 	return (1);
-}
-
-int		main(int argc, char *argv[])
-{
-	//char *op;
-	int j;
-	int	i;
-	int *temp;
-	struct node *top;
-	struct node *stack_b;
-
-	i = 1;
-	j = 0;
-	stack_b = NULL; //initialise the helper stack
-	if (argc == 1)
-		return (0);
-	temp = (int *)malloc(sizeof(int) * argc);
-	while (i <= argc - 1)
-	{
-		if (!number(argv[i]) || !max(argv[i]))
-		{
-			ft_putendl("Error");
-			return (0);
-		}
-		temp[j] = ft_atoi(argv[i]);
-		i++;
-		j++;
-	}
-	i = 1;
-	j = j - 1;
-	while (i <= argc - 1)
-	{
-		top = push(temp[j], top);
-		if (!checker(argv[i], top))
-			return (0);
-		i++;
-		j--;
-	}
-	//This must be minimised to a single function(the sorting);
-	if (argc == 4)
-		sort_3(&top);
-	else if (argc == 2)
-		ft_putendl("only one element");
-	/*else if (argc == 6)
-		sort_5(&top, &stack_b);*/
-	else if (argc == 5)
-	{
-		push_smallest(&top, &stack_b);
-		sort_3(&top);
-		push_a(&stack_b, &top);
-	}
-	else if (argc >= 6)
-	{
-		i = 1;
-		while (i++ <= argc - 1)
-		{
-			//printf("\033[0;24mIN HERE\033[0m\n");
-			//trav(top);
-			push_smallest(&top, &stack_b);
-			//trav(top);
-			//printf("\n");
-		}
-		while (i-- > 1)
-			push_a(&stack_b, &top);
-	}
-	printf("\033[0;33m");
-	trav(top);
-	/*else
-	{
-		sort_2(&top);
-		sort_5(&top, &stack_b);
-	}
-	//printf("%p", top -> link);
-	//push_smallest(&top, &stack_b);
-	printf("\033[0;33m");
-	trav(top);
-	while (get_next_line(0, &op) == 1)
-	{
-		do_op(op, &top, &stack_b);
-		trav(top);
-	}
-	push_smallest(&top, &stack_b);
-	trav(top);*/	
-	return (0);
 }

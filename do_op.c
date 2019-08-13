@@ -15,26 +15,25 @@
 void	do_op(char *ins, struct node **stack_a, struct node **stack_b)
 {
 	if (!ft_strcmp(ins, "sa"))
-		nswap(*stack_a, 'a');
+		nswap(*stack_a, 'c');
 	else if (!ft_strcmp(ins, "sb"))
-		nswap(*stack_b, 'b');
+		nswap(*stack_b, 'c');
 	else if (!ft_strcmp(ins, "ss"))
-		ab_swap(*stack_a, *stack_b);	
+		ab_swap(*stack_a, *stack_b, 'c');
 	else if (!ft_strcmp(ins, "pa"))
-        push_a(stack_b, stack_a);
+		push_a(stack_b, stack_a, 'c');
 	else if (!ft_strcmp(ins, "pb"))
-        push_b(stack_a, stack_b);
+		push_b(stack_a, stack_b, 'c');
 	else if (!ft_strcmp(ins, "ra"))
-        rot_ab(stack_a, 'a');
+		rot_ab(stack_a, 'c');
 	else if (!ft_strcmp(ins, "rb"))
-        rot_ab(stack_b, 'b');
+		rot_ab(stack_b, 'c');
 	else if (!ft_strcmp(ins, "rr"))
-        ab_rotate(stack_a, stack_b);
+		ab_rotate(stack_a, stack_b, 'c');
 	else if (!ft_strcmp(ins, "rra"))
-        rrot_ab(stack_a, 'a');
+		rrot_ab(stack_a, 'c');
 	else if (!ft_strcmp(ins, "rrb"))
-        rrot_ab(stack_b, 'b');
+		rrot_ab(stack_b, 'c');
 	else if (!ft_strcmp(ins, "rrr"))
-        ab_rrotate(stack_a, stack_b);
-	//return (1);
+		ab_rrotate(stack_a, stack_b, 'c');
 }
