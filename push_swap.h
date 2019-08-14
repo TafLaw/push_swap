@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/13 16:23:13 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/14 15:06:04 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,13 @@ void			do_op(char *ins, struct node **stack_a,
 		struct node **stack_b);
 void		rotate(struct node *stack);
 void		ab_rotate(struct node **a, struct node **b, char c);
+
+
+
+
+int     *find_ch(struct node *top, int a, int b);
+void    results(struct node **top, struct node **b, int len, int *ch);
+void	bsmall_to_top(struct node **top, struct node **b, int loc, int len);
+void	exce(struct node **a, struct node **b);
 
 #endif

@@ -50,6 +50,7 @@ int       main(int argc, char *argv[])
     }
 	while (get_next_line(0, &op) == 1)
         do_op(op, &top, &stack_b);
+    printf("Sorted == %d\n", sorted(top, (argc - 1)));
 	sorted(top, (argc - 1)) == 1 ? ft_putendl("\nOK") : ft_putendl("\nKO");
 	trav(top);
 }

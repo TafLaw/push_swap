@@ -14,6 +14,7 @@
 
 int		main(int argc, char **argv)
 {
+	int *ch = NULL;
 	int			i = 1;
 	int			j = 0;
 	int			*temp;
@@ -42,9 +43,9 @@ int		main(int argc, char **argv)
 	}
 	if (sorted(top, (argc - 1)))
 		return (0);
-	if (argc <= 6)
-		sorter(&top, &s_b);
-	/*else if (argc > 6 && argc < 100)
+	//if (argc <= 6)
+		//sorter(&top, &s_b);
+	/*if (argc > 6 && argc < 100)
 	{
 		i = 1;
 		while (i++ <= argc - 1)
@@ -52,9 +53,11 @@ int		main(int argc, char **argv)
 		while (i-- > 1)
 			push_a(&s_b, &top, 'a');
 	}*/
-	else
-    call(&top, &s_b);
- 
+	//push_largest(&top, &s_b);
+	//else
+    //call(&top, &s_b);
+	exce(&top, &s_b);
+	
         printf("\033[0;32m A\n");
         trav(top);
         printf("\033[0m");

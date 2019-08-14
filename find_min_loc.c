@@ -86,5 +86,4 @@ int     *range(struct node *top, int big, int small)
        chunk[i++] = chunk[j++] + new;
     chunk[i] = find_max(top);
     return (chunk);
-
 }

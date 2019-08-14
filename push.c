@@ -99,7 +99,7 @@ void		push_largest(struct node **stack, struct node **b)
 	int			max;
 	int			location;
 	struct node *a;
-
+	
 	a = *b;
 	location = 0;
 	max = find_max(*b);
