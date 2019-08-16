@@ -6,17 +6,17 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 15:23:05 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/15 17:24:03 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/16 18:14:22 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-struct node	*push(int dat, struct node *top)
+t_list	*push(int dat, t_list *top)
 {
-	struct node *temp;
+	t_list	*temp;
 
-	temp = (struct node *)malloc(sizeof(struct node));
+	temp = (t_list *)malloc(sizeof(t_list));
 	if (temp == NULL)
 		return (0);
 	temp->data = dat;
@@ -25,10 +25,10 @@ struct node	*push(int dat, struct node *top)
 	return (top);
 }
 
-void		push_b(struct node **top, struct node **stack_b, char c)
+void	push_b(t_list **top, t_list **stack_b, char c)
 {
-	struct node *temp;
-	struct node *p;
+	t_list		*temp;
+	t_list		*p;
 	int			dat;
 
 	if (empty(*top))
@@ -41,7 +41,7 @@ void		push_b(struct node **top, struct node **stack_b, char c)
 		return ;
 	}
 	dat = p->data;
-	temp = (struct node *)malloc(sizeof(struct node));
+	temp = (t_list *)malloc(sizeof(t_list));
 	if (temp == NULL)
 		return ;
 	temp->data = dat;
@@ -53,10 +53,10 @@ void		push_b(struct node **top, struct node **stack_b, char c)
 	ft_putendl("pb");
 }
 
-void		push_a(struct node **stack_b, struct node **top, char c)
+void	push_a(t_list **stack_b, t_list **top, char c)
 {
-	struct node *temp;
-	struct node *p;
+	t_list		*temp;
+	t_list		*p;
 	int			dat;
 
 	if (empty(*stack_b))
@@ -69,7 +69,7 @@ void		push_a(struct node **stack_b, struct node **top, char c)
 		return ;
 	}
 	dat = p->data;
-	temp = (struct node *)malloc(sizeof(struct node));
+	temp = (t_list *)malloc(sizeof(t_list));
 	if (temp == NULL)
 		return ;
 	temp->data = dat;
@@ -81,11 +81,11 @@ void		push_a(struct node **stack_b, struct node **top, char c)
 	ft_putendl("pa");
 }
 
-void		push_smallest(struct node **stack, struct node **b)
+void	push_smallest(t_list **stack, t_list **b)
 {
 	int			min;
 	int			location;
-	struct node *a;
+	t_list		*a;
 
 	a = *stack;
 	location = 0;
@@ -94,11 +94,11 @@ void		push_smallest(struct node **stack, struct node **b)
 	small_to_top(stack, b, location, ft_lstlen(*stack));
 }
 
-void		push_largest(struct node **stack, struct node **b)
+void	push_largest(t_list **stack, t_list **b)
 {
 	int			max;
 	int			location;
-	struct node *a;
+	t_list		*a;
 
 	a = *b;
 	location = 0;

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	do_op(char *ins, struct node **stack_a, struct node **stack_b)
+void	do_op(char *ins, t_list **stack_a, t_list **stack_b)
 {
 	if (!ft_strcmp(ins, "sa"))
 		nswap(*stack_a, 'c');

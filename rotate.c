@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void	rot_ab(struct node **stack, char c)
+void	rot_ab(t_list **stack, char c)
 {
-	struct node *top;
-	struct node *end;
+	t_list *top;
+	t_list *end;
 
 	if (*stack == NULL)
 		return ;
@@ -35,11 +35,11 @@ void	rot_ab(struct node **stack, char c)
 	c == 'a' ? ft_putendl("ra") : ft_putendl("rb");
 }
 
-void	rrot_ab(struct node **stack, char c)
+void	rrot_ab(t_list **stack, char c)
 {
-	struct node *top;
-	struct node *end;
-	struct node *tmp;
+	t_list *top;
+	t_list *end;
+	t_list *tmp;
 
 	if (*stack == NULL)
 		return ;
@@ -61,13 +61,13 @@ void	rrot_ab(struct node **stack, char c)
 	c == 'a' ? ft_putendl("rra") : ft_putendl("rrb");
 }
 
-void	ab_rotate(struct node **a, struct node **b, char c)
+void	ab_rotate(t_list **a, t_list **b, char c)
 {
 	rot_ab(a, c);
 	rot_ab(b, c);
 }
 
-void	ab_rrotate(struct node **a, struct node **b, char c)
+void	ab_rrotate(t_list **a, t_list **b, char c)
 {
 	rrot_ab(a, c);
 	rrot_ab(b, c);

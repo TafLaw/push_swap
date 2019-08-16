@@ -6,15 +6,15 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/23 17:33:31 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/15 17:01:21 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/16 17:58:26 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_lstlen(struct node *r)
+int		ft_lstlen(t_list *r)
 {
-	struct node	*temp;
+	t_list		*temp;
 	int			len;
 
 	temp = r;

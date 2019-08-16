@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/05 13:57:12 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/13 13:39:42 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/16 18:22:28 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int		main(int argc, char **argv)
 	int			i = 1;
 	int			j = 0;
 	int			*temp;
-	struct node *top;
-	struct node *s_b = NULL;
+	t_list *top;
+	t_list *s_b = NULL;
 
 	if (argc == 1)
 		return (0);
@@ -46,5 +46,6 @@ int		main(int argc, char **argv)
 		sorter(&top, &s_b);
 	else
 		exce(&top, &s_b);
+	sleep(50);
 	return (0);
 }

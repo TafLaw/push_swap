@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-static void	sort_2(struct node **stack)
+static void	sort_2(t_list **stack)
 {
-	struct node *temp;
+	t_list *temp;
 
 	temp = *stack;
 	if (temp->data > temp->link->data)
@@ -22,9 +22,9 @@ static void	sort_2(struct node **stack)
 	return ;
 }
 
-static void	sort_3(struct node **stack)
+static void	sort_3(t_list **stack)
 {
-	struct node *t;
+	t_list *t;
 
 	t = *stack;
 	if (pos(t, 1) < pos(t, 2) && pos(t, 2) < pos(t, 3))
@@ -51,7 +51,7 @@ static void	sort_3(struct node **stack)
 		rrot_ab(stack, 'a');
 }
 
-static void	sort_4(struct node **stack, struct node **b)
+static void	sort_4(t_list **stack, t_list **b)
 {
 	int location;
 	int min;
@@ -66,7 +66,7 @@ static void	sort_4(struct node **stack, struct node **b)
 	push_a(b, stack, 'a');
 }
 
-static void	sort_5(struct node **stack, struct node **b)
+static void	sort_5(t_list **stack, t_list **b)
 {
 	int i;
 
@@ -78,7 +78,7 @@ static void	sort_5(struct node **stack, struct node **b)
 		push_a(b, stack, 'a');
 }
 
-void		sorter(struct node **stack, struct node **b)
+void		sorter(t_list **stack, t_list **b)
 {
 	int len;
 

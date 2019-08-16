@@ -6,13 +6,13 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 15:31:46 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/15 16:55:47 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/16 18:15:57 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	bsmall_to_top(struct node **top, int loc, int len)
+void			bsmall_to_top(t_list **top, int loc, int len)
 {
 	int mid;
 
@@ -39,7 +39,7 @@ void	bsmall_to_top(struct node **top, int loc, int len)
 	}
 }
 
-static void	gen_2(int res1, int res2, struct node **top, struct node **b)
+static void		gen_2(int res1, int res2, t_list **top, t_list **b)
 {
 	if (res2 == 0)
 		while (res1-- > 1)
@@ -56,7 +56,7 @@ static void	gen_2(int res1, int res2, struct node **top, struct node **b)
 	push_b(top, b, 'b');
 }
 
-void		generate(int res1, int res2, struct node **top, struct node **b)
+void			generate(int res1, int res2, t_list **top, t_list **b)
 {
 	if (res2 > res1 || res2 == res1)
 	{

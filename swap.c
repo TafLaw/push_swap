@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	nswap(struct node *stack, char c)
+void	nswap(t_list *stack, char c)
 {
 	int *a;
 	int *b;
@@ -32,7 +32,7 @@ void	nswap(struct node *stack, char c)
 	c == 'a' ? ft_putendl("sa") : ft_putendl("sb");
 }
 
-void	small_to_top(struct node **top, struct node **b, int loc, int len)
+void	small_to_top(t_list **top, t_list **b, int loc, int len)
 {
 	int mid;
 
@@ -60,13 +60,13 @@ void	small_to_top(struct node **top, struct node **b, int loc, int len)
 	push_b(top, b, 'b');
 }
 
-void	ab_swap(struct node *stack_a, struct node *stack_b, char c)
+void	ab_swap(t_list *stack_a, t_list *stack_b, char c)
 {
 	nswap(stack_a, c);
 	nswap(stack_b, c);
 }
 
-void	big_to_top(struct node **top, struct node **b, int loc, int len)
+void	big_to_top(t_list **top, t_list **b, int loc, int len)
 {
 	int mid;
 

@@ -6,13 +6,13 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 17:03:41 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/15 17:07:11 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/16 18:09:56 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		find_min(struct node *stack)
+int		find_min(t_list *stack)
 {
 	int	min;
 
@@ -26,7 +26,7 @@ int		find_min(struct node *stack)
 	return (min);
 }
 
-int		find_max(struct node *stack)
+int		find_max(t_list *stack)
 {
 	int	max;
 
@@ -40,9 +40,9 @@ int		find_max(struct node *stack)
 	return (max);
 }
 
-int		loc(struct node *top, int min)
+int		loc(t_list *top, int min)
 {
-	struct node	*len;
+	t_list		*len;
 	int			i;
 
 	i = 1;
@@ -55,7 +55,7 @@ int		loc(struct node *top, int min)
 	return (i);
 }
 
-int		pos(struct node *a, int loc)
+int		pos(t_list *a, int loc)
 {
 	int i;
 	int	value;
@@ -70,7 +70,7 @@ int		pos(struct node *a, int loc)
 	return (value);
 }
 
-int		*find_ch(struct node *top, int a, int b)
+int		*find_ch(t_list *top, int a, int b)
 {
 	int j;
 	int i;

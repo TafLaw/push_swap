@@ -15,9 +15,9 @@
 
 //This function is for display testing
 
-void	trav(struct node *top)
+void	trav(t_list *top)
 {
-	struct node *temp;
+	t_list *temp;
 
 	if (top == NULL)
 		ft_putendl("EMPTY");
@@ -47,9 +47,9 @@ int		max(char *str)
 	return (1);
 }
 
-int		duplicate(struct node *stack)
+int		duplicate(t_list *stack)
 {
-	struct node *temp;
+	t_list *temp;
 
 	while (stack)
 	{
@@ -87,7 +87,7 @@ int		number(char *s)
 	return (0);
 }
 
-int		checker(char *s, struct node *top)
+int		checker(char *s, t_list *top)
 {
 	if (!number(s) || duplicate(top))
 	{

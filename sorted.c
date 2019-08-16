@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-int		sorted(struct node *stack, int len)
+int		sorted(t_list *stack, int len)
 {
-	struct node *temp;
+	t_list *temp;
 
 	temp = stack;
 	while (temp->link != NULL)

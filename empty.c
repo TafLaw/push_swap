@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int		empty(struct node *top)
+int		empty(t_list *top)
 {
 	if (top == NULL)
 		return (1);
