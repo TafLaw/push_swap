@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isEmpty.c                                          :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 15:35:44 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/23 15:38:42 by tmuzeren         ###   ########.fr       */
+/*   Created: 2019/05/21 15:33:41 by tmuzeren          #+#    #+#             */
+/*   Updated: 2019/06/21 14:37:08 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int    isEmpty(struct node *top)
+void	ft_strdel(char **as)
 {
-	if (top == NULL)
-        return (1);
-	return (0);
+	if (as != NULL)
+	{
+		free(*as);
+		*as = NULL;
+	}
+	else
+		return ;
 }

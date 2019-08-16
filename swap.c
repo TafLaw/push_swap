@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 14:29:03 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/13 13:33:29 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/15 17:38:46 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ void	small_to_top(struct node **top, struct node **b, int loc, int len)
 {
 	int mid;
 
-	if (len % 2 == 0)
-		mid = len / 2;
-	else
-		mid = (len / 2) + 1;
+	mid = half_mid(len);
 	if (loc == 1 && len != 2)
 	{
 		push_b(top, b, 'b');
@@ -80,30 +77,17 @@ void	big_to_top(struct node **top, struct node **b, int loc, int len)
 	else
 		mid = (len / 2) + 1;
 	if (loc == 1 && len != 2)
-	{
-		push_a(b, top, 'a');
 		return ;
-	}
-	else if ((*b)->link == NULL)
-	{
-		push_a(b, top, 'a');
+	else if (*b == NULL)
 		return ;
-	}
 	else if (loc <= mid)
 	{
-		while (1 < loc)
-		{
+		while (1 < loc--)
 			rot_ab(b, 'b');
-			loc--;
-		}
 	}
 	else if (loc > mid)
 	{
-		while (len >= loc)
-		{
+		while (len-- >= loc)
 			rrot_ab(b, 'b');
-			len--;
-		}
 	}
-	push_a(b, top, 'a');
 }

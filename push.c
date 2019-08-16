@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 15:23:05 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/13 13:55:06 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/15 17:24:03 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void		push_b(struct node **top, struct node **stack_b, char c)
 	struct node *p;
 	int			dat;
 
-	if (isEmpty(*top))
+	if (empty(*top))
 		return ;
 	p = *top;
-	if (p->link == NULL)
+	if (p == NULL)
 	{
 		*stack_b = push(p->data, *stack_b);
 		*top = NULL;
@@ -59,7 +59,7 @@ void		push_a(struct node **stack_b, struct node **top, char c)
 	struct node *p;
 	int			dat;
 
-	if (isEmpty(*stack_b))
+	if (empty(*stack_b))
 		return ;
 	p = *stack_b;
 	if (p == NULL)
@@ -99,10 +99,11 @@ void		push_largest(struct node **stack, struct node **b)
 	int			max;
 	int			location;
 	struct node *a;
-	
+
 	a = *b;
 	location = 0;
 	max = find_max(*b);
 	location = loc(*b, max);
 	big_to_top(stack, b, location, ft_lstlen(*b));
+	push_a(b, stack, 'a');
 }

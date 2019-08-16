@@ -1,44 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_a.c                                          :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/19 10:35:50 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/07/19 11:05:40 by tmuzeren         ###   ########.fr       */
+/*   Created: 2019/05/21 16:34:11 by tmuzeren          #+#    #+#             */
+/*   Updated: 2019/06/06 09:16:10 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int		*stack(struct node *st)
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int 	*sta = (int *)malloc(sizeof(int));
-	int		i;
-	struct node *temp;
+	unsigned int i;
 
-	i = 0;
-	temp = top;
-	while (i < 6 && temp -> link != NULL)
-	{
-		sta[i] = temp -> data;
-		temp = temp -> link;
-		i++;
-	}
-	return (sta);
-}
-
-int	main(void)
-{
-	int *list = stack(top);
-	int i = 0;
-
-	while (i < 6)
-	{
-		printf("%d |", list[i]);
-		i++;
-	}
-	printf("\n");
+	if (s1 == NULL || s2 == NULL)
+		return (0);
+	i = ft_strncmp(s1, s2, n);
+	if (i == 0)
+		return (1);
 	return (0);
 }

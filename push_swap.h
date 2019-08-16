@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/14 15:06:04 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/16 12:38:13 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ struct node
 };
 
 int max(char *str);
-int     *range(struct node *top, int big, int small);
+int     *range(struct node *top, int big, int small);//remove
 int     find_max(struct node *stack);
 int number(char *s);
 int duplicate(struct node *stack);
@@ -35,24 +35,24 @@ int sorted(struct node *stack, int len);
 void    trav(struct node *top);
 int		find_min(struct node *stack);
 int		loc(struct node *top, int min);
-void    call(struct node **a, struct node **b);
+void    call(struct node **a, struct node **b);//remove
 void	big_to_top(struct node **top, struct node **b, int loc, int len);
 void		push_largest(struct node **stack, struct node **b);
 void	push_smallest(struct node **stack, struct node **b);
 void        small_to_top(struct node **top, struct node **b, int loc, int len);
 int     pos(struct node *a, int loc);
 void	sorter(struct node **stack, struct node **b);
-void    half_sort(struct node **top, struct node **b, int len, int *ch);
+void    half_sort(struct node **top, struct node **b, int len, int *ch);//remove
 int     ft_lstlen(struct node *r);
 void    ab_rrotate(struct node **a, struct node **b, char c);
 void          rot_ab(struct node **stack, char c);
 void           rrot_ab(struct node **stack, char c);
-int			isEmpty(struct node *top);
-void		delete_n(struct node *top);
+int			empty(struct node *top);
+void		delete_n(struct node *top);//remove
 void	push_a(struct node **stack_b, struct node **top, char c);
 void	push_b(struct node **top, struct node **stack_b, char c);
-void		pop(struct node **top);
-int				*reverse_stack(int ar, struct node *stack);
+void		pop(struct node **top);//remove
+int				*reverse_stack(int ar, struct node *stack);//remove
 struct node		*push(int dat, struct node *top);
 int			checker(char *s, struct node *top);
 int			sort(struct node *stack, char *s);
@@ -66,10 +66,13 @@ void		ab_rotate(struct node **a, struct node **b, char c);
 
 
 
-
+int     *res(int mid, int k, struct node **top, int *ch);
 int     *find_ch(struct node *top, int a, int b);
 void    results(struct node **top, struct node **b, int len, int *ch);
-void	bsmall_to_top(struct node **top, struct node **b, int loc, int len);
+//void    results(struct node **top, struct node **b, int *ch, int *k);
+void	bsmall_to_top(struct node **top, int loc, int len);
 void	exce(struct node **a, struct node **b);
+int     half_mid(int len);
+void    generate(int res1, int res2, struct node **top, struct node **b);
 
 #endif

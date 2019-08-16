@@ -12,9 +12,57 @@
 
 #include "push_swap.h"
 
-void	half_sort(struct node **top, struct node **b, int len, int *ch)
+void	bsmall_to_top(struct node **top, struct node **b, int loc, int len)
 {
-	int i, j = 0;
+	int mid;
+
+	if (len % 2 == 0)
+		mid = len / 2;
+	else
+		mid = (len / 2) + 1;
+	if (loc == 1 && len != 2)
+	{
+		push_b(top, b, 'b');
+		return ;
+	}
+	else if ((*top)->data > (*top)->link->data && len == 2)
+	{
+		nswap(*top, 'b');
+		return ;
+	}
+	else if (loc <= mid)
+	{
+		while (1 < loc--)
+			rot_ab(top, 'b');
+	}
+	else if (loc > mid)
+	{
+		while (len-- >= loc)
+			rrot_ab(top, 'b');
+	}
+}
+
+int     *find_ch(struct node *top, int a, int b)
+{
+    int j;
+    int i = 1;
+    int new = 0;
+    int *chunk = (int *)malloc(sizeof(int) * 5);
+
+    j = 0;
+    if ((a - b) % 2 != 0)
+        new += 1;
+    new += (a - b) / 5;
+    chunk[0] = new + b - 1;
+    while (i < 4 && j < 5)
+       chunk[i++] = chunk[j++] + new;
+    chunk[i] = find_max(top);
+    return (chunk);
+}
+
+void    results(struct node **top, struct node **b, int len, int *ch)
+{
+    int i, j = 0;
 	int res1;
 	int res2;
 	int l;
@@ -27,10 +75,10 @@ void	half_sort(struct node **top, struct node **b, int len, int *ch)
 		l = len / 2;
 	else
 		l = (len / 2) + 1;
-	while (j < 4)
+	while (j < 5)
 	{
 		i = 1;
-		// printf("\033[0;31mCH = %d\n\033[0m", ch[j]);
+		//printf("\033[0;31mCH = %d\n\033[0m", ch[j]);
 		while (i <= l)
         {	/* printf("\033[0;32m pos[%d]	-> %d\n\033[0m", i, pos(*top, i)); */
 			if (pos(*top, i) >= find_min(*top) && pos(*top, i) <= ch[j])
@@ -57,116 +105,56 @@ void	half_sort(struct node **top, struct node **b, int len, int *ch)
 		else
 			break ;
 	}
-/* 	printf("\033[0;53mres1 = %d		res2 = %d\n", res1, res2);
- */	if (res2 > res1 || res2 == res1)//seperate function
-	{
-		if (res1 == 0 || (res1 == 0 && res2 == 1))
-			while (res2 >= 1)
-            {
+    //printf("r1 = %d     r2 = %d\n", res1, res2);
+    if (res2 > res1 || res2 == res1)
+    {
+        if (res1 == 0 || (res1 == 0 && res2 == 1))
+			while (res2-- >= 1)
 				rrot_ab(top, 'a');
-                res2--;
-            }
-		else
-			while (res1 > 1)
-            {
-				rot_ab(top, 'a');
-                res1--;
-            }
-	}
-	else if (res2 < res1)
+       else
+            while (res1-- > 1)
+                rot_ab(top, 'a');
+       if (empty(*b))
+       {
+            push_b(top, b, 'b');
+            return ;
+       }
+       bsmall_to_top(b, top, loc(*b, find_min(*b)), ft_lstlen(*b));
+       push_b(top, b, 'b');
+    }
+    else if (res2 < res1)
 	{
 		if (res2 == 0)
-			while (res1 > 1)
-            {
+			while (res1-- > 1)
 				rot_ab(top, 'a');
-                res1--;
-            }
 		else
-			while (res2 >= 1)
-            {
+		    while (res2-- >= 1)
 				rrot_ab(top, 'a');
-                res2--;
-            }
-	}
-	/* printf("Stack A\n");
-
-		trav(*top); */
-	push_b(top, b, 'b');
-	/* printf("\033[0;33m Stack B\n\033[0m");
-	trav(*b); */
+        if (empty(*b))
+        {
+            push_b(top, b, 'b');
+            return ;
+        }
+        bsmall_to_top(b, top, loc(*b, find_min(*b)), ft_lstlen(*b));
+        push_b(top, b, 'b');
+	} 
+   //trav(*top)
 }
 
-void	call(struct node **a, struct node **b)
+void	exce(struct node **a, struct node **b)
 {
-	int len;
+    int len;
 	int *ch;
 	int i;
 
-	int j;
-	// int x;
-	int con;
-
 	i = 0;
 	len = ft_lstlen(*a);
-	ch = range(*a, find_max(*a), find_min(*a));
-	printf("\n\n___________CHUNK == %d____________\n\n", ch[i]);
-	while (i < len / 2)
+	ch = find_ch(*a, find_max(*a), find_min(*a));
+	while (i < len)
     {
-		half_sort(a, b, len, ch);
+		results(a, b, len, ch);
         i++;
     }
-	len = ft_lstlen(*a);
-	while (len >= 2)
-    {
-		push_smallest(a, b);
-        len--;
-    }
-	len = ft_lstlen(*b);
-	i = 0;
-	while (i < len / 2)
-    {
-		push_a(b, a, 'a');
-        i++;
-    }
-
-	/* printf("\n\n.......STACK A.......\n\n");
-	trav(*a);
-	printf("\n\n.......STACK B.......\n\n");
-	trav(*b) */;
-	len = ft_lstlen(*b);
-	while (len > 0)
-	{
-		push_largest(a, b);
-		/* while (pos(*a, 1) > pos(*a, i))
-			i++;
-		if (pos(*a, 1) < pos(*a, i))
-			while (i-- > 0)
-			{
-				nswap(*a, 'a');
-				while (pos(*a, 2) < pos(*a, 3))
-				{
-					rrot_ab(a, 'a');
-					nswap(*a, 'a');
-				}
-				rot_ab(a, 'a');
-			} */
-			j = 1;
-			con = 0;
-		//	x = ft_lstlen(*a);
-		if (pos(*a, j) > pos(*a, j + 1))
-		{
-			while (pos(*a, j) > pos(*a, j + 1))
-			{
-				nswap(*a, 'a');
-				if (pos(*a, j + 1) > pos(*a, j + 2))
-					rot_ab(a, 'a');
-					con++;
-			}
-			while (con-- > 1)
-				rrot_ab(a, 'a');
-		}
-		//if (pos(*a, 2) < pos(*a, 1))
-			//nswap(*a, 'a');
-		len--;
-	}
+    while (len-- >= 1)
+        push_largest(a, b);
 }
