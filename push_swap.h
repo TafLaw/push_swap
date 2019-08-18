@@ -6,14 +6,12 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/16 17:56:08 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/18 17:21:29 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# define MAX "2147483648"
-# define MIN "-2147483648"
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -25,11 +23,20 @@ typedef	struct		s_list
 	int				data;
 	struct s_list	*link;
 }					t_list;
+typedef struct		s_stack
+{
+	char			*op;
+	int				j;
+	int				i;
+	int				*temp;
+	t_list			*stack_b;
+	t_list			*top;
+}					t_stack;
 int					max(char *str);
 int					find_max(t_list *stack);
 int					number(char *s);
 int					duplicate(t_list *stack);
-void				create_temp(int **temp, int len, char **argv);
+int					create_stack(t_list **top, int *temp, char **argv, int j);
 int					sorted(t_list *stack, int len);
 void				trav(t_list *top);
 int					find_min(t_list *stack);
@@ -63,5 +70,7 @@ void				bsmall_to_top(t_list **top, int loc, int len);
 void				exce(t_list **a, t_list **b);
 int					half_mid(int len);
 void				generate(int res1, int res2, t_list **top, t_list **b);
-
+void				delete_n(t_list *top);
+int					do_push(t_list *temp, t_list *p, t_list **s_b,
+		t_list **top);
 #endif

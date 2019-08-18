@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_temp.c                                      :+:      :+:    :+:   */
+/*   create_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/05 14:13:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/16 18:19:37 by tmuzeren         ###   ########.fr       */
+/*   Created: 2019/08/17 09:51:17 by tmuzeren          #+#    #+#             */
+/*   Updated: 2019/08/17 10:15:59 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	create_temp(int **temp, int len, char **argv)
+int		create_stack(t_list **top, int *temp, char **argv, int j)
 {
-	int *t;
 	int i;
-	int j;
+	int	k;
 
-	j = 0;
 	i = 1;
-	t = *temp;
-	while (i++ <= len - 1)
+	k = j;
+	j = j - 1;
+	while (i <= k)
 	{
-		if (!number(argv[i]) || !max(argv[i]))
+		*top = push(temp[j--], *top);
+		if (!checker(argv[i++], *top))
 		{
-			ft_putendl("Error");
-			return ;
+			free(temp);
+			return (0);
 		}
-		t[j++] = ft_atoi(argv[i]);
 	}
-	*temp = t;
+	free(temp);
+	return (1);
 }

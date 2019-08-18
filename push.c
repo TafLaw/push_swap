@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/19 15:23:05 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/16 18:14:22 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/18 17:16:17 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	push_b(t_list **top, t_list **stack_b, char c)
 {
 	t_list		*temp;
 	t_list		*p;
-	int			dat;
 
 	if (empty(*top))
 		return ;
@@ -38,18 +37,18 @@ void	push_b(t_list **top, t_list **stack_b, char c)
 	{
 		*stack_b = push(p->data, *stack_b);
 		*top = NULL;
+		free(p);
 		return ;
 	}
-	dat = p->data;
 	temp = (t_list *)malloc(sizeof(t_list));
-	if (temp == NULL)
+	if (!do_push(temp, p, top, stack_b))
 		return ;
-	temp->data = dat;
-	temp->link = *stack_b;
-	*stack_b = temp;
-	*top = p->link;
 	if (c == 'c')
+	{
+		free(p);
 		return ;
+	}
+	free(p);
 	ft_putendl("pb");
 }
 
@@ -57,7 +56,6 @@ void	push_a(t_list **stack_b, t_list **top, char c)
 {
 	t_list		*temp;
 	t_list		*p;
-	int			dat;
 
 	if (empty(*stack_b))
 		return ;
@@ -66,18 +64,19 @@ void	push_a(t_list **stack_b, t_list **top, char c)
 	{
 		*top = push(p->data, *top);
 		*stack_b = NULL;
+		free(p);
 		return ;
 	}
-	dat = p->data;
 	temp = (t_list *)malloc(sizeof(t_list));
-	if (temp == NULL)
+	if (!do_push(temp, p, stack_b, top))
 		return ;
-	temp->data = dat;
-	temp->link = *top;
-	*top = temp;
-	*stack_b = p->link;
 	if (c == 'c')
+	{
+		free(p);
 		return ;
+	}
+	free(p);
+	delete_n(*top);
 	ft_putendl("pa");
 }
 

@@ -36,4 +36,5 @@ void	do_op(char *ins, t_list **stack_a, t_list **stack_b)
 		rrot_ab(stack_b, 'c');
 	else if (!ft_strcmp(ins, "rrr"))
 		ab_rrotate(stack_a, stack_b, 'c');
+	free(ins);
 }

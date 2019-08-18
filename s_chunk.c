@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/16 16:54:00 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/16 17:02:28 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/18 16:38:54 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,5 @@ void		exce(t_list **a, t_list **b)
 	}
 	while (len-- >= 1)
 		push_largest(a, b);
+	free(ch);
 }

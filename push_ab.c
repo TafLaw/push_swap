@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorted.c                                           :+:      :+:    :+:   */
+/*   push_ab.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/08 11:00:00 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/18 17:23:45 by tmuzeren         ###   ########.fr       */
+/*   Created: 2019/08/18 17:17:11 by tmuzeren          #+#    #+#             */
+/*   Updated: 2019/08/18 17:19:09 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		sorted(t_list *stack, int len)
+int		do_push(t_list *temp, t_list *p, t_list **s_b, t_list **top)
 {
-	t_list *temp;
+	int dat;
 
-	temp = stack;
-	while (temp->link != NULL)
+	dat = p->data;
+	if (temp == NULL)
 	{
-		if (temp->data > temp->link->data)
-			return (0);
-		temp = temp->link;
+		free(p);
+		return (0);
 	}
-	if (ft_lstlen(stack) == len)
-		return (1);
-	return (0);
+	temp->data = dat;
+	temp->link = *top;
+	*top = temp;
+	*s_b = p->link;
+	return (1);
 }
