@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 14:01:18 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/17 10:41:31 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/19 15:25:19 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 static void	print_sort(int argc, t_list *top)
 {
 	sorted(top, (argc - 1)) == 1 ? ft_putendl("\nOK") : ft_putendl("\nKO");
+}
+
+static int	get_ops(t_list **top, t_list **stack_b, int argc)
+{
+	char *op;
+
+	while (get_next_line(0, &op) == 1)
+	{
+		if (operations(op) == 0)
+		{
+			ft_putendl("Error");
+			return (0);
+		}
+		do_op(op, top, stack_b);
+	}
+	print_sort(argc, *top);
+	return (1);
 }
 
 int			main(int argc, char *argv[])
@@ -38,10 +55,8 @@ int			main(int argc, char *argv[])
 		d.i++;
 	}
 	if (create_stack(&d.top, d.temp, argv, d.j))
-	{
-		while (get_next_line(0, &d.op) == 1)
-			do_op(d.op, &d.top, &d.stack_b);
-		print_sort(argc, d.top);
-	}
+		if (!get_ops(&d.top, &d.stack_b, argc))
+			return (0);
+	sleep(50);
 	return (0);
 }

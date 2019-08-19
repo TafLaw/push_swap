@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/18 17:21:29 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/19 11:41:35 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <stdio.h>
 # include "./libft/libft.h"
 # include "get_next_line.h"
 
@@ -63,7 +62,6 @@ void				ab_swap(t_list	*stack_a, t_list *stack_b, char c);
 void				do_op(char *ins, t_list **stack_a, t_list **stack_b);
 void				rotate(t_list *stack);
 void				ab_rotate(t_list **a, t_list **b, char c);
-int					*res(int mid, int k, t_list **top, int *ch);
 int					*find_ch(t_list *top, int a, int b);
 void				results(t_list **top, t_list **b, int len, int *ch);
 void				bsmall_to_top(t_list **top, int loc, int len);
@@ -71,6 +69,7 @@ void				exce(t_list **a, t_list **b);
 int					half_mid(int len);
 void				generate(int res1, int res2, t_list **top, t_list **b);
 void				delete_n(t_list *top);
+int					operations(char *ins);
 int					do_push(t_list *temp, t_list *p, t_list **s_b,
 		t_list **top);
 #endif
