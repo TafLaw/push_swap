@@ -76,7 +76,7 @@ void	push_a(t_list **stack_b, t_list **top, char c)
 		return ;
 	}
 	free(p);
-	delete_n(*top);
+	delete_n(top);
 	ft_putendl("pa");
 }
 

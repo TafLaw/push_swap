@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete_n.c                                         :+:      :+:    :+:   */
+/*   words.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/23 15:24:22 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/21 11:42:25 by tmuzeren         ###   ########.fr       */
+/*   Created: 2019/08/21 11:44:31 by tmuzeren          #+#    #+#             */
+/*   Updated: 2019/08/21 11:44:48 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	delete_n(t_list **top)
+int	words(char const *str, char c)
 {
-	t_list *temp;
-	t_list *link;
+	int word;
+	int i;
 
-	temp = *top;
-	while (temp)
+	i = 0;
+	word = 0;
+	if (str == NULL)
+		return (0);
+	while (str[i] == c)
+		i++;
+	while (str[i] != '\0')
 	{
-		link = temp->link;
-		free(temp);
-		temp = link;
+		if (i == 0 && str[i] != c)
+			word++;
+		if (str[i] != c && str[i - 1] == c)
+			word++;
+		i++;
 	}
-	*top = NULL;
+	return (word);
 }

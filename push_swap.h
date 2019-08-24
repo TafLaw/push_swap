@@ -6,7 +6,7 @@
 /*   By: tmuzeren <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/09 11:03:45 by tmuzeren          #+#    #+#             */
-/*   Updated: 2019/08/19 11:41:35 by tmuzeren         ###   ########.fr       */
+/*   Updated: 2019/08/21 11:45:39 by tmuzeren         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_stack
 	char			*op;
 	int				j;
 	int				i;
+	int				w;
 	int				*temp;
 	t_list			*stack_b;
 	t_list			*top;
@@ -68,8 +69,11 @@ void				bsmall_to_top(t_list **top, int loc, int len);
 void				exce(t_list **a, t_list **b);
 int					half_mid(int len);
 void				generate(int res1, int res2, t_list **top, t_list **b);
-void				delete_n(t_list *top);
+void				delete_n(t_list **top);
 int					operations(char *ins);
 int					do_push(t_list *temp, t_list *p, t_list **s_b,
 		t_list **top);
+int					words(char const *str, char c);
+void				exce2(t_list **a, t_list **b);
+int					*find_ch2(t_list *top, int a, int b);
 #endif
